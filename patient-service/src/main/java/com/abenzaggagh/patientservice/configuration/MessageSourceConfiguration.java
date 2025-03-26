@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 @Configuration
 public class MessageSourceConfiguration {
 
@@ -26,6 +29,10 @@ public class MessageSourceConfiguration {
         bean.setValidationMessageSource(messageSource());
 
         return bean;
+    }
+
+    public static String getMessageForLocale(String messageKey, Locale locale, Object... args) {
+        return ResourceBundle.getBundle("messages", locale).getString(messageKey).formatted(args);
     }
 
 }
