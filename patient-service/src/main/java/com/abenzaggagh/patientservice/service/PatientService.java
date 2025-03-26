@@ -1,8 +1,11 @@
 package com.abenzaggagh.patientservice.service;
 
+import billing.BillingResponse;
 import com.abenzaggagh.patientservice.dto.PatientRequestDTO;
 import com.abenzaggagh.patientservice.dto.PatientResponseDTO;
 import com.abenzaggagh.patientservice.exception.BusinessException;
+import com.abenzaggagh.patientservice.grpc.BillingServiceGrpcClient;
+import com.abenzaggagh.patientservice.kafka.KafkaProducer;
 import com.abenzaggagh.patientservice.mapper.PatientMapper;
 import com.abenzaggagh.patientservice.model.Patient;
 import com.abenzaggagh.patientservice.repository.PatientRepository;
@@ -21,7 +24,11 @@ import java.util.UUID;
 @Service
 public class PatientService {
 
+    private final KafkaProducer kafkaProducer;
+
     private final PatientRepository patientRepository;
+
+    private final BillingServiceGrpcClient billingServiceGrpcClient;
 
     public List<PatientResponseDTO> getPatients() {
         return patientRepository.findAll()
@@ -36,6 +43,10 @@ public class PatientService {
         }
 
         Patient patient = patientRepository.save(PatientMapper.toEntity(patientRequestDTO));
+
+        BillingResponse billingResponse = billingServiceGrpcClient.createBillingAccount(patient.getId().toString(), patient.getName(), patient.getEmail());
+
+        kafkaProducer.sendEvent(patient, "PATIENT_CREATED");
 
         return PatientMapper.toDTO(patient);
     }
