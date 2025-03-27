@@ -1,10 +1,10 @@
 ### PUT request to update a patient
-PUT http://localhost:4004/api/patients/123e4567-e89b-12d3-a456-426614174000
+PUT http://localhost:4004/api/patients/9e42d0f2-dafb-463d-80ef-5d07ddafb19c
 Content-Type: application/json
-Accept-Language: fr-FR
+Authorization: Bearer {{ token }}
 
 {
-  "name": "Amine Benzaggagh",
+  "name": "Amine BEN ZAGGAGH",
   "email": "amine.benzaggagh@example.com",
   "address": "001 Main Street",
   "dateOfBirth": "1998-02-14"
