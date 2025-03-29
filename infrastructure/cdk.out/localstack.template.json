@@ -703,6 +703,10 @@
         "Value": "always"
        },
        {
+        "Name": "JWT_SECRET",
+        "Value": "Y2hhVEc3aHJnb0hYTzMyZ2ZqVkpiZ1RkZG93YWxrUkM="
+       },
+       {
         "Name": "SPRING_DATASOURCE_URL",
         "Value": {
          "Fn::Join": [
@@ -757,10 +761,6 @@
        {
         "Name": "SPRING_KAFKA_BOOTSTRAP_SERVERS",
         "Value": "localhost.localstack.cloud:4510, localhost.localstack.cloud:4511, localhost.localstack.cloud:4512"
-       },
-       {
-        "Name": "JWT_KEY",
-        "Value": "MIIJKQIBAAKCAgEAjrxKCP8eKDPJkTodb6f98G0T+Ic9HyljdSPmTPO8zMcgg7RfMIIJKQIBAAKCAgEAjrxKCP8eKDPJkTodb6f98G0T+Ic9HyljdSPmTPO8zMcgg7RfMIIJKQIBAAKCAgEAjrxKCP8eKDPJkTodb6f98G0T+Ic9HyljdSPmTPO8zMcgg7RfMIIJKQIBAAKCAgEAjrxKCP8eKDPJkTodb6f98G0T+Ic9HyljdSPmTPO8zMcgg7Rf"
        }
       ],
       "Essential": true,
@@ -1636,12 +1636,12 @@
      {
       "Environment": [
        {
-        "Name": "SPRING_PROFILES_ACTIVE",
-        "Value": "prod"
-       },
-       {
         "Name": "AUTH_SERVICE_URL",
         "Value": "http://host.docker.internal:4005"
+       },
+       {
+        "Name": "SPRING_PROFILES_ACTIVE",
+        "Value": "prod"
        }
       ],
       "Essential": true,

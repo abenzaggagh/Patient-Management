@@ -66,7 +66,12 @@ public class LocalStack extends Stack {
 
         this.ecsCluster = createECSCluster();
 
-        FargateService authService = createFargateService("AuthService", "auth-service", List.of(4005), authServiceDB, Map.of("JWT_KEY", "MIIJKQIBAAKCAgEAjrxKCP8eKDPJkTodb6f98G0T+Ic9HyljdSPmTPO8zMcgg7RfMIIJKQIBAAKCAgEAjrxKCP8eKDPJkTodb6f98G0T+Ic9HyljdSPmTPO8zMcgg7RfMIIJKQIBAAKCAgEAjrxKCP8eKDPJkTodb6f98G0T+Ic9HyljdSPmTPO8zMcgg7RfMIIJKQIBAAKCAgEAjrxKCP8eKDPJkTodb6f98G0T+Ic9HyljdSPmTPO8zMcgg7Rf"));
+        FargateService authService =
+                createFargateService("AuthService",
+                        "auth-service",
+                        List.of(4005),
+                        authServiceDB,
+                        Map.of("JWT_SECRET", "Y2hhVEc3aHJnb0hYTzMyZ2ZqVkpiZ1RkZG93YWxrUkM="));
 
         authService.getNode().addDependency(authDbHealthCheck);
         authService.getNode().addDependency(authServiceDB);
