@@ -1,2 +1,2 @@
-DELETE http://localhost:4004/api/patients/123e4567-e89b-12d3-a456-426614174000
+DELETE http://lb-2d8b6a25.elb.localhost.localstack.cloud:4004/api/patients/c5d6ab0c-30d2-40d5-a18d-e43b273058cb
 Authorization: Bearer {{ token }}

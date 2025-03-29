@@ -1,7 +1,8 @@
 ### POST request to create patient
-POST http://localhost:4004/api/patients
+POST http://lb-2d8b6a25.elb.localhost.localstack.cloud:4004/api/patients
 Content-Type: application/json
 Accept-Language: fr-FR
+Authorization: Bearer {{ token }}
 
 {
   "name": "Amine Benzaggagh",
